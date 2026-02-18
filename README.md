@@ -293,7 +293,7 @@ This audit supports the client goal of **increasing free→paid conversions** th
 
 ## 5. Net New Recommendations (Client Discussion)
 
-This section captures specific recommendations for Humanityco: **free trial angle for onboarding**, **replacement of site scan with liability disclaimer**, and **more aggressive (but compliant) conversion tactics**. All guidance below is **documentation only**—implementation is separate.
+This section captures specific recommendations for Humanityco: **free trial angle for onboarding**, **replacement of site scan with liability disclaimer**, and **more aggressive (but compliant) conversion tactics**.
 
 **Status key:** `Present` = already in plugin and done well | `Present — can improve` = exists but could be better | `Not yet` = not implemented
 

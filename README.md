@@ -2,7 +2,7 @@
 
 **Objective:** Map end-to-end user experience for new and existing users, documenting what we **can** and **cannot** do at each touchpoint from a WordPress compliance perspective.
 
-**Client Goal (Context for Future Sessions):** Convert more customers from free to paid through more aggressive advertisements in WordPress while staying within WordPress.org rules and standards.
+**Client's Goal (Context for Future Sessions):** Convert more customers from free to paid through more aggressive advertisements in WordPress while staying within WordPress.org rules and standards.
 
 ---
 
@@ -12,6 +12,7 @@
 2. [Existing User Journey](#2-existing-user-journey)
 3. [Capability Matrices](#3-capability-matrices)
 4. [Summary & Recommendations](#4-summary--recommendations)
+5. [Net New Recommendations (Client Discussion)](#5-net-new-recommendations-client-discussion)
 
 ---
 
@@ -281,7 +282,7 @@ flowchart TD
 
 ### 4.4 Document Purpose
 
-This audit supports the goal of **increasing free→paid conversions** through **more aggressive in-WordPress advertising** while staying within WordPress.org rules. Future sessions may use these touchpoints and capability matrices to:
+This audit supports the client goal of **increasing free→paid conversions** through **more aggressive in-WordPress advertising** while staying within WordPress.org rules. Future sessions can use these touchpoints and capability matrices to:
 
 - Prioritize which surfaces to optimize first
 - Draft new copy and CTAs
@@ -289,6 +290,104 @@ This audit supports the goal of **increasing free→paid conversions** through *
 - Design A/B tests for upgrade prompts
 
 ---
+
+## 5. Net New Recommendations (Client Discussion)
+
+This section captures specific recommendations for Humanityco: **free trial angle for onboarding**, **replacement of site scan with liability disclaimer**, and **more aggressive (but compliant) conversion tactics**. All guidance below is **documentation only**—implementation is separate.
+
+**Status key:** `Present` = already in plugin and done well | `Present — can improve` = exists but could be better | `Not yet` = not implemented
+
+**Summary:** Most conversion touchpoints (plugin row, settings, onboarding, notices) are already present. The main opportunities are: (1) **replace** the compliance check with a liability disclaimer, (2) **improve** copy from signup/upgrade-focused to trial-focused ("Try free", "Try Cookie Compliance free"), and (3) **add** missing elements such as the trial badge and dashboard soft upsell when near limit.
+
+---
+
+### 5.1 Replace "Compliance Check" / Site Scan with Liability Disclaimer
+
+**Current status:** **Present — can improve.** The plugin shows a simulated "Compliance check" with progress bar and Pass/Fail results (`welcome.php` about sidebar). The "Compliance Failed!" / "Compliance Passed!" language implies we assess compliance, which risks guideline #9 (no compliance guarantee).
+
+**Rationale:** WordPress guideline #9 prohibits implying that a plugin can "guarantee legal compliance." A simulated "site scan" that passes/fails suggests the plugin is assessing compliance—which can be interpreted as a compliance guarantee. Replacing it with a clear **liability disclaimer** aligns with guidelines and reduces legal risk.
+
+#### What we CAN do
+- Replace the compliance check heading and body copy with a liability disclaimer
+- Remove the animated progress bar and Pass/Fail results
+- Use static disclaimer text: "You are responsible for ensuring your site complies..."
+- Keep the site URL/Name display
+- Add ability to skip progress bar JS
+
+#### What we CAN'T do
+- Keep a simulated "scan" that implies we're assessing legal compliance
+- Use "Passed" / "Failed" language that suggests we guarantee compliance
+- Imply the plugin makes sites compliant on its own
+
+---
+
+### 5.2 Free Trial Angle for Plugin-Only Installers
+
+**Current status:** **Present — can improve.** The plugin already has CTAs ("Sign up to Cookie Compliance", "Add Compliance features", "Free Upgrade", "Start Basic", "Upgrade to Cookie Compliance") but the copy is signup/upgrade-focused rather than trial-focused. Switching to "Try free" / "Try Cookie Compliance free" reduces friction and better frames the free Basic tier.
+
+**Rationale:** Plugin-only users (who skip Cookie Compliance) are a key conversion segment. Emphasizing "try free" and "no credit card" reduces friction. **Important:** The trial is of the **Cookie Compliance SaaS** (external service), not the plugin. WordPress guideline #5 prohibits trialware—the plugin itself must remain fully functional.
+
+#### What we CAN do
+- Say "Try Cookie Compliance free" — trial of external service
+- Say "Start Basic free — no credit card required"
+- Say "Try free" / "Start free" for the SaaS onboarding
+- Add "No credit card • Free to start" badge on Basic plan in pricing step
+
+#### What we CAN'T do
+- Say "Try this plugin free for 14 days" — trialware (plugin features locked)
+- Disable any plugin functionality after a trial period
+- Imply the free plugin becomes limited or locked without payment
+
+#### How to implement (when ready)
+| Location | Current string | New string | Status |
+|----------|----------------|------------|--------|
+| Welcome Step 1 CTA | "Sign up to Cookie Compliance" | "Try Cookie Compliance free" | Present — can improve |
+| Welcome Step 3 Basic button | "Start Basic" | "Try free" or "Start free — no credit card" | Present — can improve |
+| Plugin row link | "Free Upgrade" | "Try free" or "Start free" | Present — can improve |
+| Settings CTAs | "Add Compliance features" | "Try Cookie Compliance free" | Present — can improve |
+| Consent Logs / Privacy tabs | "Upgrade to Cookie Compliance" | "Try Cookie Compliance free" | Present — can improve |
+| Basic plan trial badge | — | "No credit card • Free to start" | Not yet |
+
+---
+
+### 5.3 Where to Add Trial Messaging (Touchpoints)
+
+| Touchpoint | File / Hook | Current | Recommended | Status |
+|------------|-------------|---------|-------------|--------|
+| Welcome Step 1 — Main CTA | `welcome.php` (screen 1) | "Sign up to Cookie Compliance" | "Try Cookie Compliance free" | Present — can improve |
+| Welcome Step 3 — Basic plan | `welcome.php` (screen 3) | "Start Basic" | "Try free" or "Start free — no credit card" | Present — can improve |
+| Welcome Step 3 — Skip button | `welcome.php` | "I don't want to create an account now" | Optional: "Continue with plugin only" | Present (fine as-is; optional to soften) |
+| Plugin row link | `cookie-notice.php` → `plugin_action_links` | "Free Upgrade" | "Try free" or "Start free" | Present — can improve |
+| Settings — Add Compliance CTA | `settings.php` | "Add Compliance features" | "Try Cookie Compliance free" | Present — can improve |
+| Consent Logs / Privacy tabs | `settings.php`, `privacy-consent.php` | "Upgrade to Cookie Compliance" | "Try Cookie Compliance free" | Present — can improve |
+
+---
+
+### 5.4 More Aggressive (But Compliant) Approach — Can vs Can't
+
+#### What we CAN do (allowed within WP standards)
+
+| Tactic | Where | How | Status |
+|--------|-------|-----|--------|
+| Stronger trial CTAs | Onboarding, settings, plugin row | Use "Try free" / "Start free" / "Try Cookie Compliance free" | Present — can improve (current copy is signup/upgrade-focused) |
+| Liability disclaimer | Welcome Step 1 sidebar | Replace site scan UI with static "You take full responsibility" copy | Present — can improve (current compliance check risks guideline #9) |
+| Repeated CTAs on settings | Cookie Consent, Privacy Consent, Consent Logs tabs | Add "Try free" in status blocks, empty states—keep contextual | Present (CTAs exist); can improve (soften copy to trial-focused) |
+| Dashboard widget soft upsell | `dashboard.php` → widget | When Basic plan or near limit: "Unlock more with Pro" link—must be dismissible | Present ("Log in & Configure"); can improve (add "Unlock more with Pro" when near limit) |
+| Admin notices value-first | `cookie-notice.php` → `add_notice` | Lead with benefit (e.g., Microsoft Clarity) before CTA; keep dismissible | Present (notices are dismissible); can improve (sharpen benefit-first copy) |
+| Plugin row copy | `cookie-notice.php` → `plugin_action_links` | A/B test "Try free" vs "Free Upgrade" | Present — can improve |
+| Welcome modal trial badge | `welcome.php` (Step 3) | "No credit card • Free to start" on Basic plan | Not yet |
+| Inline upsell next to Pro-only options | Settings page | "Upgrade to Pro" / "Try Pro" next to disabled features | Partially present (locked tabs have CTAs); can improve (add inline hints) |
+
+#### What we CAN'T do (prohibited)
+
+| Prohibited | Why |
+|------------|-----|
+| Lock plugin features behind payment or trial | Guideline #5 — trialware |
+| Make notices non-dismissible | Guideline #11 — hijacking |
+| Imply or guarantee legal compliance | Guideline #9 |
+| Add external links on public frontend without opt-in | Guideline #10 |
+| Overwhelm dashboard with constant nags | Guideline #11 |
+| Track referrals via upgrade links (ad tracking) | Guideline #7 |
 
 ---
 
@@ -299,4 +398,4 @@ This audit supports the goal of **increasing free→paid conversions** through *
 
 ---
 
-*Document Version: 1.0 | Last Updated: February 18 2025*
+*Document Version: 1.0 | Last Updated: February 2025*

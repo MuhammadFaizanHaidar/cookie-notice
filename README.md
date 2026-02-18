@@ -288,7 +288,12 @@ This audit supports the client goal of **increasing free→paid conversions** th
 - Draft new copy and CTAs
 - Avoid guideline violations (trialware, hijacking, misleading claims)
 - Design A/B tests for upgrade prompts
+---
 
+### 4.5 FigJam Diagrams (Editable)
+
+- **[Cookie Notice - New User Journey](https://www.figma.com/online-whiteboard/create-diagram/b3e53e0a-d3c0-4c65-9ab9-bc02dfcdc050)** — Discovery → First configuration
+- **[Cookie Notice - Existing User Upgrade Journey](https://www.figma.com/online-whiteboard/create-diagram/f08f7208-aac7-4832-a7cd-8ebd0387368d)** — Dashboard → Upgrade conversion flow
 ---
 
 ## 5. Net New Recommendations (Client Discussion)
@@ -389,13 +394,6 @@ This section captures specific recommendations for Humanityco: **free trial angl
 | Overwhelm dashboard with constant nags | Guideline #11 |
 | Track referrals via upgrade links (ad tracking) | Guideline #7 |
 
----
 
-### 4.5 FigJam Diagrams (Editable)
-
-- **[Cookie Notice - New User Journey](https://www.figma.com/online-whiteboard/create-diagram/b3e53e0a-d3c0-4c65-9ab9-bc02dfcdc050)** — Discovery → First configuration
-- **[Cookie Notice - Existing User Upgrade Journey](https://www.figma.com/online-whiteboard/create-diagram/f08f7208-aac7-4832-a7cd-8ebd0387368d)** — Dashboard → Upgrade conversion flow
-
----
 
 *Document Version: 1.0 | Last Updated: February 2025*
